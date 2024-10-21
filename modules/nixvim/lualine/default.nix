@@ -38,7 +38,7 @@ let
     common_mode // {
       a = {
         fg = fg_a;
-        bg = theme.nord6;
+        bg = theme.everforest6;
         gui = "bold";
       };
     };
@@ -70,8 +70,8 @@ let
   diff_highlights = builtins.listToAttrs (map (name: {
     name = "lualine_b_" + name;
     value = {
-      fg = theme.nord6;
-      bg = theme.nord10;
+      fg = theme.everforest6;
+      bg = theme.everforest10;
     };
   }) diff_highlight_names);
 
@@ -90,11 +90,11 @@ in {
       ignore_focus = common_filetypes;
 
       theme = with theme; {
-        normal = make_mode nord2;
-        insert = make_mode nord10;
-        visual = make_mode nord15;
-        replace = make_mode nord12;
-        inactive = make_mode nord10;
+        normal = make_mode everforest2;
+        insert = make_mode everforest10;
+        visual = make_mode everforest15;
+        replace = make_mode everforest12;
+        inactive = make_mode everforest10;
       };
     };
 
@@ -142,12 +142,12 @@ in {
 
         windows_color = {
           active = {
-            fg = theme.nord6;
-            bg = theme.nord10;
+            fg = theme.everforest6;
+            bg = theme.everforest10;
           };
           inactive = {
-            fg = theme.nord6;
-            bg = theme.nord1;
+            fg = theme.everforest6;
+            bg = theme.everforest1;
           };
         };
 
@@ -160,12 +160,12 @@ in {
 
         tabs_color = {
           active = {
-            fg = theme.nord6;
-            bg = theme.nord10;
+            fg = theme.everforest6;
+            bg = theme.everforest10;
           };
           inactive = {
-            fg = theme.nord6;
-            bg = theme.nord1;
+            fg = theme.everforest6;
+            bg = theme.everforest1;
           };
         };
 
@@ -197,8 +197,8 @@ in {
           icon_only = true;
 
           color = {
-            fg = theme.nord0;
-            bg = theme.nord6;
+            fg = theme.everforest0;
+            bg = theme.everforest6;
           };
         }
         {
@@ -211,8 +211,8 @@ in {
           separator = { left = ""; };
 
           color = {
-            fg = theme.nord6;
-            bg = theme.nord10;
+            fg = theme.everforest6;
+            bg = theme.everforest10;
           };
         }
       ];
@@ -231,8 +231,8 @@ in {
           icon_only = true;
 
           color = {
-            fg = theme.nord6;
-            bg = theme.nord1;
+            fg = theme.everforest6;
+            bg = theme.everforest1;
           };
         }
         {
@@ -245,8 +245,8 @@ in {
           separator = { left = ""; };
 
           color = {
-            fg = theme.nord6;
-            bg = theme.nord1;
+            fg = theme.everforest6;
+            bg = theme.everforest1;
           };
         }
       ];
@@ -255,15 +255,15 @@ in {
 
   highlight = with theme;
     {
-      StatusLine = { bg = nord0; };
+      StatusLine = { bg = everforest0; };
 
       lualine_b_windows_active = {
-        fg = nord6;
-        bg = nord10;
+        fg = everforest6;
+        bg = everforest10;
       };
       lualine_b_windows_inactive = {
-        fg = nord6;
-        bg = nord1;
+        fg = everforest6;
+        bg = everforest1;
       };
     } // diff_highlights;
 }

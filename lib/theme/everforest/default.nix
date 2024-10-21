@@ -1,21 +1,20 @@
 { ... }: {
-  #still need to update these color codes -- currently still set for nord theme.
   theme.everforest = {
-    everforest0 = "#2e3440";
-    everforest1 = "#3b4252";
-    everforest2 = "#434c5e";
-    everforest3 = "#4c566a";
-    everforest4 = "#d8dee9";
-    everforest5 = "#e5e9f0";
-    everforest6 = "#eceff4";
-    everforest7 = "#8fbcbb";
-    everforest8 = "#88c0d0";
-    everforest9 = "#81a1c1";
-    everforest10 = "#5e81ac";
-    everforest11 = "#bf616a";
-    everforest12 = "#d08770";
-    everforest13 = "#ebcb8b";
-    everforest14 = "#a3be8c";
-    everforest15 = "#b48ead";
+    everforest0 = "#2b3339";
+    everforest1 = "#323c41";
+    everforest2 = "#3a4248";
+    everforest3 = "#424a50";
+    everforest4 = "#d3c6aa";
+    everforest5 = "#e9e8d2";
+    everforest6 = "#fdf6e3";
+    everforest7 = "#7fbbb3";
+    everforest8 = "#83c092";
+    everforest9 = "#a7c080";
+    everforest10 = "#e69875";
+    everforest11 = "#dbbc7f";
+    everforest12 = "#d699b6";
+    everforest13 = "#a7c080";
+    everforest14 = "#83c092";
+    everforest15 = "#7fbbb3";
   };
 }
