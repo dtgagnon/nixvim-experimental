@@ -99,36 +99,31 @@ in {
     };
 
     settings.sections = {
-      lualine_a = [
-        # Use a Lua function for custom component
-        {
-          component = helpers.mkRaw ''
-            						function()
-            							return ""
-            						end
-                    	'';
-        }
-      ];
+      lualine_a = [{
+        name = helpers.mkRaw ''
+          function()
+            return ""
+          end
+        '';
+      }];
       lualine_b = [
-        # Built-in component with an icon
         {
-          component = "branch";
+          name = "branch";
           icon = "";
         }
-        # Simple built-in component
-        "diff"
+        { name = "diff"; }
       ];
       lualine_c = [ "" ];
       lualine_x = [{
-        component = "diagnostics";
-        update_in_insert = true;
+        name = "diagnostics";
+        extraConfig = { update_in_insert = true; };
       }];
       lualine_y = [ "" ];
       lualine_z = [
-        "%l:%c"
+        { name = "%l:%c"; }
         {
-          component = "fileformat";
-          icon_only = true;
+          name = "fileformat";
+          extraConfig = { icon_only = true; };
         }
       ];
     };
@@ -137,17 +132,19 @@ in {
       lualine_a = [ "" ];
       lualine_b = [ "" ];
       lualine_c = [{
-        component = "windows";
-        symbols = common_symbols;
+        name = "windows";
+        extraConfig = {
+          symbols = common_symbols;
 
-        windows_color = {
-          active = {
-            fg = theme.everforest6;
-            bg = theme.everforest10;
-          };
-          inactive = {
-            fg = theme.everforest6;
-            bg = theme.everforest1;
+          windows_color = {
+            active = {
+              fg = theme.everforest6;
+              bg = theme.everforest10;
+            };
+            inactive = {
+              fg = theme.everforest6;
+              bg = theme.everforest1;
+            };
           };
         };
 
@@ -156,19 +153,20 @@ in {
       lualine_x = [ "" ];
       lualine_y = [ "" ];
       lualine_z = [{
-        component = "tabs";
+        name = "tabs";
 
-        tabs_color = {
-          active = {
-            fg = theme.everforest6;
-            bg = theme.everforest10;
-          };
-          inactive = {
-            fg = theme.everforest6;
-            bg = theme.everforest1;
+        extraConfig = {
+          tabs_color = {
+            active = {
+              fg = theme.everforest6;
+              bg = theme.everforest10;
+            };
+            inactive = {
+              fg = theme.everforest6;
+              bg = theme.everforest1;
+            };
           };
         };
-
         separator = { left = ""; };
       }];
     };
@@ -179,22 +177,25 @@ in {
       lualine_c = [
         ""
         {
-          # Custom component using Lua functions
-          component = helpers.mkRaw ''
+          name = helpers.mkRaw ''
             require('nvim-navic').get_location
           '';
-          cond = helpers.mkRaw ''
-            require('nvim-navic').is_available
-          '';
+          extraConfig = {
+            cond = helpers.mkRaw ''
+              require('nvim-navic').is_available
+            '';
+          };
         }
       ];
       lualine_x = [ "" ];
       lualine_y = [ "" ];
       lualine_z = [
         {
-          component = "filetype";
-          colored = false;
-          icon_only = true;
+          name = "filetype";
+          extraConfig = {
+            colored = false;
+            icon_only = true;
+          };
 
           color = {
             fg = theme.everforest0;
@@ -202,11 +203,14 @@ in {
           };
         }
         {
-          component = "filename";
-          file_status = true;
-          shorting_target = 25;
-          path = 1;
-          symbols = common_symbols;
+          name = "filename";
+          extraConfig = {
+            file_status = true;
+            shorting_target = 25;
+            path = 1;
+
+            symbols = common_symbols;
+          };
 
           separator = { left = ""; };
 
@@ -226,9 +230,11 @@ in {
       lualine_y = [ "" ];
       lualine_z = [
         {
-          component = "filetype";
-          colored = false;
-          icon_only = true;
+          name = "filetype";
+          extraConfig = {
+            colored = false;
+            icon_only = true;
+          };
 
           color = {
             fg = theme.everforest6;
@@ -236,11 +242,14 @@ in {
           };
         }
         {
-          component = "filename";
-          file_status = true;
-          path = 1;
-          shorting_target = 25;
-          symbols = common_symbols;
+          name = "filename";
+          extraConfig = {
+            file_status = true;
+            path = 1;
+            shorting_target = 25;
+
+            symbols = common_symbols;
+          };
 
           separator = { left = ""; };
 
