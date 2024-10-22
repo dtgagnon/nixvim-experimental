@@ -1,7 +1,7 @@
-{ helpers, lib, ... }:
+{ helpers, lib, theme, ... }:
 
 let
-  theme = lib.spirenix.theme.everforest;
+  myTheme = lib.spirenix.${theme};
 
   common_filetypes = [ "dashboard" "NvimTree" "Trouble" ];
 
@@ -24,13 +24,13 @@ let
   };
 
   common_mode = {
-    b.bg = theme.everforest10;
-    c.bg = theme.everforest0;
-    x.bg = theme.everforest0;
-    y.bg = theme.everforest0;
+    b.bg = theme.${theme}10;
+    c.bg = theme.${theme}0;
+    x.bg = theme.${theme}0;
+    y.bg = theme.${theme}0;
     z = {
-      fg = theme.everforest6;
-      bg = theme.everforest10;
+      fg = theme.${theme}6;
+      bg = theme.${theme}10;
     };
   };
 
@@ -38,7 +38,7 @@ let
     common_mode // {
       a = {
         fg = fg_a;
-        bg = theme.everforest6;
+        bg = theme.${theme}6;
         gui = "bold";
       };
     };
@@ -70,8 +70,8 @@ let
   diff_highlights = builtins.listToAttrs (map (name: {
     name = "lualine_b_" + name;
     value = {
-      fg = theme.everforest6;
-      bg = theme.everforest10;
+      fg = th${theme}6;
+      bg = th${theme}10;
     };
   }) diff_highlight_names);
 
@@ -90,40 +90,45 @@ in {
       ignore_focus = common_filetypes;
 
       theme = with theme; {
-        normal = make_mode everforest2;
-        insert = make_mode everforest10;
-        visual = make_mode everforest15;
-        replace = make_mode everforest12;
-        inactive = make_mode everforest10;
+        normal = make_mode ${theme}2;
+        insert = make_mode ${theme}10;
+        visual = make_mode ${theme}15;
+        replace = make_mode ${theme}12;
+        inactive = make_mode ${theme}10;
       };
     };
 
     settings.sections = {
-      lualine_a = [{
-        name = helpers.mkRaw ''
-          function()
-            return ""
-          end
-        '';
-      }];
-      lualine_b = [
+      lualine_a = [
+        # Use a Lua function for custom component
         {
-          name = "branch";
+          component = helpers.mkRaw ''
+            						function()
+            							return ""
+            						end
+                    	'';
+        }
+      ];
+      lualine_b = [
+        # Built-in component with an icon
+        {
+          component = "branch";
           icon = "";
         }
-        { name = "diff"; }
+        # Simple built-in component
+        "diff"
       ];
       lualine_c = [ "" ];
       lualine_x = [{
-        name = "diagnostics";
-        extraConfig = { update_in_insert = true; };
+        component = "diagnostics";
+        update_in_insert = true;
       }];
       lualine_y = [ "" ];
       lualine_z = [
-        { name = "%l:%c"; }
+        "%l:%c"
         {
-          name = "fileformat";
-          extraConfig = { icon_only = true; };
+          component = "fileformat";
+          icon_only = true;
         }
       ];
     };
@@ -132,19 +137,17 @@ in {
       lualine_a = [ "" ];
       lualine_b = [ "" ];
       lualine_c = [{
-        name = "windows";
-        extraConfig = {
-          symbols = common_symbols;
+        component = "windows";
+        symbols = common_symbols;
 
-          windows_color = {
-            active = {
-              fg = theme.everforest6;
-              bg = theme.everforest10;
-            };
-            inactive = {
-              fg = theme.everforest6;
-              bg = theme.everforest1;
-            };
+        windows_color = {
+          active = {
+            fg = theme.${theme}6;
+            bg = theme.${theme}10;
+          };
+          inactive = {
+            fg = theme.${theme}6;
+            bg = theme.${theme}1;
           };
         };
 
@@ -153,20 +156,19 @@ in {
       lualine_x = [ "" ];
       lualine_y = [ "" ];
       lualine_z = [{
-        name = "tabs";
+        component = "tabs";
 
-        extraConfig = {
-          tabs_color = {
-            active = {
-              fg = theme.everforest6;
-              bg = theme.everforest10;
-            };
-            inactive = {
-              fg = theme.everforest6;
-              bg = theme.everforest1;
-            };
+        tabs_color = {
+          active = {
+            fg = theme.${theme}6;
+            bg = theme.nord10;
+          };
+          inactive = {
+            fg = theme.${theme}6;
+            bg = theme.${theme}1;
           };
         };
+
         separator = { left = ""; };
       }];
     };
@@ -177,46 +179,40 @@ in {
       lualine_c = [
         ""
         {
-          name = helpers.mkRaw ''
+          # Custom component using Lua functions
+          component = helpers.mkRaw ''
             require('nvim-navic').get_location
           '';
-          extraConfig = {
-            cond = helpers.mkRaw ''
-              require('nvim-navic').is_available
-            '';
-          };
+          cond = helpers.mkRaw ''
+            require('nvim-navic').is_available
+          '';
         }
       ];
       lualine_x = [ "" ];
       lualine_y = [ "" ];
       lualine_z = [
         {
-          name = "filetype";
-          extraConfig = {
-            colored = false;
-            icon_only = true;
-          };
+          component = "filetype";
+          colored = false;
+          icon_only = true;
 
           color = {
-            fg = theme.everforest0;
-            bg = theme.everforest6;
+            fg = theme.${theme}0;
+            bg = theme.${theme}6;
           };
         }
         {
-          name = "filename";
-          extraConfig = {
-            file_status = true;
-            shorting_target = 25;
-            path = 1;
-
-            symbols = common_symbols;
-          };
+          component = "filename";
+          file_status = true;
+          shorting_target = 25;
+          path = 1;
+          symbols = common_symbols;
 
           separator = { left = ""; };
 
           color = {
-            fg = theme.everforest6;
-            bg = theme.everforest10;
+            fg = theme.${theme}6;
+            bg = theme.${theme}10;
           };
         }
       ];
@@ -230,32 +226,27 @@ in {
       lualine_y = [ "" ];
       lualine_z = [
         {
-          name = "filetype";
-          extraConfig = {
-            colored = false;
-            icon_only = true;
-          };
+          component = "filetype";
+          colored = false;
+          icon_only = true;
 
           color = {
-            fg = theme.everforest6;
-            bg = theme.everforest1;
+            fg = theme.nord6;
+            bg = theme.nord1;
           };
         }
         {
-          name = "filename";
-          extraConfig = {
-            file_status = true;
-            path = 1;
-            shorting_target = 25;
-
-            symbols = common_symbols;
-          };
+          component = "filename";
+          file_status = true;
+          path = 1;
+          shorting_target = 25;
+          symbols = common_symbols;
 
           separator = { left = ""; };
 
           color = {
-            fg = theme.everforest6;
-            bg = theme.everforest1;
+            fg = theme.${theme}6;
+            bg = theme.${theme}1;
           };
         }
       ];
@@ -264,15 +255,15 @@ in {
 
   highlight = with theme;
     {
-      StatusLine = { bg = everforest0; };
+      StatusLine = { bg = nord0; };
 
       lualine_b_windows_active = {
-        fg = everforest6;
-        bg = everforest10;
+        fg = ${theme}6;
+        bg = ${theme}10;
       };
       lualine_b_windows_inactive = {
-        fg = everforest6;
-        bg = everforest1;
+        fg = ${theme}6;
+        bg = ${theme}1;
       };
     } // diff_highlights;
 }

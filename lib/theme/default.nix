@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, config, ... }:
 
 let
   selectedTheme = "everforest"; # Change this to switch themes

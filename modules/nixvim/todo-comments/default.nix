@@ -1,4 +1,7 @@
-{ lib, ... }: {
+{ lib, theme, ... }: 
+let 
+  theme = lib.spirenix.theme;
+in {
   plugins.todo-comments = {
     enable = true;
 
@@ -47,13 +50,13 @@
         };
       };
 
-      colors = with lib.spirenix.theme.nord; {
-        error = [ nord11 ];
-        warning = [ nord12 ];
-        info = [ nord15 ];
-        hint = [ nord10 ];
-        todo = [ nord6 ];
-        default = [ nord6 ];
+      colors = with theme; {
+        error = [ ${theme}11 ];
+        warning = [ ${theme}12 ];
+        info = [ ${theme}15 ];
+        hint = [ ${theme}10 ];
+        todo = [ ${theme}6 ];
+        default = [ ${theme}6 ];
       };
     };
   };

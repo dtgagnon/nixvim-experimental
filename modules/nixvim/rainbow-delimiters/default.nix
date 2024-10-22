@@ -1,12 +1,12 @@
 { lib, ... }:
-let theme = lib.spirenix.theme.nord;
+let theme = lib.spirenix.theme;
 in {
-  highlight = {
-    RainbowDelimiterBlue.fg = theme.nord7;
-    RainbowDelimiterOrange.fg = theme.nord12;
-    RainbowDelimiterGreen.fg = theme.nord14;
-    RainbowDelimiterViolet.fg = theme.nord15;
-    RainbowDelimiterCyan.fg = theme.nord9;
+  highlight = with theme; {
+    RainbowDelimiterBlue.fg = ${theme}7;
+    RainbowDelimiterOrange.fg = ${theme}12;
+    RainbowDelimiterGreen.fg = ${theme}14;
+    RainbowDelimiterViolet.fg = ${theme}15;
+    RainbowDelimiterCyan.fg = ${theme}9;
   };
 
   plugins = {
